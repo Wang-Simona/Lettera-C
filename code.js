@@ -1,7 +1,7 @@
 export const configurazione = {
   testo: "CC Baby",
   dimensione: 0.8,
-  interlinea: 0.7,
+  interlinea: 0.2,
   allineamento: "centro",
   percorsoFont: "./assets/InputMonoCondensed-BoldItalic.ttf",
   mostraTestoSotto: true,
