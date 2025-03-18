@@ -39,8 +39,9 @@ export function disegnaPunto({
   translate(x, y);
   rotate(frameCount * 0.1); // 让星星缓慢旋转
 
-  // noFill();
-  // stroke(0);
+  fill(255, 99, 71);
+  strokeWeight(2);
+  stroke("MediumBlue");
 
   //------------------------------------------------------------------------------
   // 利用方向数据影响颜色
@@ -67,12 +68,13 @@ export function disegnaPunto({
 
   //-------------------------------------------------------------------------------
   // 用星星代替矩形
-  let starSize = unita * 0.5 * (1 + volume * 5 + abs(gamma) / 90); // 根据音量和设备角度变化
+  let starSize = unita * 0.2 * (1 + volume * 5 + abs(gamma) / 90); // 根据音量和设备角度变化
   angleMode(RADIANS);
   drawStar(0, 0, starSize, starSize * 0.5, 5);
   pop();
 }
 
+//星星-------------------------------------------------------------
 /**
  * Funzione per disegnare una stella a cinque punte
  * @param {number} x - Coordinata X del centro
@@ -96,6 +98,7 @@ function drawStar(x, y, raggio1, raggio2, nPunti) {
   }
   endShape(CLOSE);
 }
+//------------------------------------------------------------------
 
 //
 
@@ -113,7 +116,7 @@ export function impostazioni() {
 export function sotto(disegnaTesto) {
   background(255);
 
-  fill("deeppink");
+  fill("AntiqueWhite");
   disegnaTesto();
 }
 
