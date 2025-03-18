@@ -61,7 +61,7 @@ export function disegnaPunto({
 
   // Add slight variation based on device tilt
   scale(1 + volume * 10 + (abs(gamma) / 90) * 0.5);
-  rect(0, 0, unita / 2);
+  rect(0, 0, unita / 4);
   pop();
 }
 
