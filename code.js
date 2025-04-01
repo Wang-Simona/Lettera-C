@@ -4,11 +4,12 @@ export const configurazione = {
   interlinea: 0.7,
   allineamento: "centro",
   percorsoFont: "./assets/汉仪粗圆简.TTF",
+  mostraTestoSotto: true,
+  mostraTestoSopra: false,
+  //sensibilitàMicrofonoBase: 1,
+  //densitàPuntiBase: 1,
 
-  sensibilitàMicrofonoBase: 1,
-  densitàPuntiBase: 1,
-
-  nascondiInterfaccia: false,
+  //nascondiInterfaccia: false,
 };
 
 /**
@@ -36,7 +37,6 @@ export function disegnaPunto({
   indice,
   unita,
   volume,
-  frameCount,
   alpha = 0,
   beta = 0,
   gamma = 0,
@@ -45,7 +45,7 @@ export function disegnaPunto({
   push();
   translate(x, y);
   rotate(frameCount * 2);
-  image(img, 0, 0, 10, 10);
+  image(img, 0, 0, 50, 20);
   pop();
 }
 
@@ -63,6 +63,7 @@ export function caricamentoRisorse() {
  * Esempio: impostazioni di frame rate, misura degli angoli, ecc.
  */
 export function impostazioni() {
+  imageMode(CENTER);
   frameRate(30);
   angleMode(DEGREES);
 }
