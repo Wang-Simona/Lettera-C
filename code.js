@@ -44,17 +44,19 @@ export function disegnaPunto({
   stroke("black");
   push();
   translate(x, y);
-  rotate(frameCount);
-  strokeWeight(4);
-  line(0, 0, 10, 10);
+  rotate(frameCount * 2);
+  image(img, 0, 0, 10, 10);
   pop();
 }
 
+let img;
 /**
  * Carica le risorse necessarie
  * Esempio: carica immagini, suoni, ecc.
  */
-export function caricamentoRisorse() {}
+export function caricamentoRisorse() {
+  img = loadImage("./assets/弥散桃心爱心.png");
+}
 
 /**
  * Imposta le impostazioni iniziali
