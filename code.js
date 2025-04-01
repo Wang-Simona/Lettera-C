@@ -46,7 +46,7 @@ export function disegnaPunto({
   translate(x, y);
   rotate(frameCount);
   strokeWeight(4);
-  line(-10, -10, 10, 10);
+  line(0, 0, 10, 10);
   pop();
 }
 
