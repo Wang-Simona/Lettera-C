@@ -1,11 +1,14 @@
 export const configurazione = {
   testo: "瑛璇",
-  dimensione: 1,
-  interlinea: 0.01,
+  dimensione: 0.8,
+  interlinea: 0.7,
   allineamento: "centro",
   percorsoFont: "./assets/汉仪粗圆简.TTF",
-  mostraTestoSotto: true,
-  mostraTestoSopra: false,
+
+  sensibilitàMicrofonoBase: 1,
+  densitàPuntiBase: 1,
+
+  nascondiInterfaccia: false,
 };
 
 /**
@@ -16,12 +19,14 @@ export const configurazione = {
  * @property {number} x - La coordinata x del punto
  * @property {number} y - La coordinata y del punto
  * @property {number} angolo - L'angolo della curva della font in quel punto
- * @property {number} indice - Il numero del punto nella sequenza
- * @property {number} unita - Unita' di misura di riferimento
- * @property {number} volume - Il volume del microfono
- * @property {number} [alpha] - Device orientation alpha angle (z-axis rotation)
- * @property {number} [beta] - Device orientation beta angle (front-to-back tilt)
- * @property {number} [gamma] - Device orientation gamma angle (left-to-right tilt)
+ * @property {number} indice - Il numero del punto nella sequenza (0, 1, 2, 3, ...)
+ * @property {number} unita - Unita' di misura: corrisponde al 10% della dimensione più piccola della finestra (larghezza o altezza)
+ * @property {number} volume - Il volume del microfono - Varia da 0 a 1
+ * @property {number} frameCount - Il numero di frame passati dall'avvio del programma
+ * @property {number} [alpha] - Device orientation alpha angle (z-axis rotation) - Varia da 0 a 360
+ * @property {number} [beta] - Device orientation beta angle (front-to-back tilt) - Varia da -90 a 90
+ * @property {number} [gamma] - Device orientation gamma angle (left-to-right tilt) - Varia da -90 a 90
+ *
  * @param {Ingredienti} ingredienti
  */
 export function disegnaPunto({
@@ -31,79 +36,30 @@ export function disegnaPunto({
   indice,
   unita,
   volume,
+  frameCount,
   alpha = 0,
   beta = 0,
   gamma = 0,
 }) {
+  stroke("black");
   push();
   translate(x, y);
-  rotate(frameCount * 0.1); // 让星星缓慢旋转
-
-  fill(255, 99, 71);
-  strokeWeight(2);
-  stroke("MediumBlue");
-
-  //------------------------------------------------------------------------------
-  // 利用方向数据影响颜色
-  // Map alpha (z-rotation) to hue (0-360)
-  //const hue = map(alpha, 0, 360, 0, 360);
-
-  // Map beta (front-to-back tilt) to saturation (50-100)
-  //const saturation = map(abs(beta), 0, 90, 50, 100);
-
-  // Map gamma (left-to-right tilt) to brightness (50-100)
-  //const brightness = map(abs(gamma), 0, 90, 50, 100);
-
-  //内部填充矩形
-  //colorMode(HSB, 360, 100, 100);
-  //fill(hue, saturation, brightness);
-  //noStroke()
-  //rectMode(CENTER);
-  //rotate(frameCount + indice);
-
-  // 根据设备倾斜度增加轻微变化
-  //scale(1 + volume * 10 + (abs(gamma) / 90) * 0.5);
-  //rect(0, 0, unita / 4);
-  //pop();
-
-  //-------------------------------------------------------------------------------
-  // 用星星代替矩形
-  let starSize = unita * 0.2 * (1 + volume * 5 + abs(gamma) / 90); // 根据音量和设备角度变化
-  angleMode(RADIANS);
-  drawStar(0, 0, starSize, starSize * 0.5, 5);
+  rotate(frameCount);
+  strokeWeight(4);
+  line(-10, -10, 10, 10);
   pop();
 }
 
-//星星-------------------------------------------------------------
 /**
- * Funzione per disegnare una stella a cinque punte
- * @param {number} x - Coordinata X del centro
- * @param {number} y - Coordinata Y del centro
- * @param {number} raggio1 - Raggio esterno della stella
- * @param {number} raggio2 - Raggio interno della stella
- * @param {number} nPunti - Numero di punte (default: 5)
+ * Carica le risorse necessarie
+ * Esempio: carica immagini, suoni, ecc.
  */
-function drawStar(x, y, raggio1, raggio2, nPunti) {
-  let angolo = TWO_PI / nPunti;
-  let metaAngolo = angolo / 2.0;
-
-  beginShape();
-  for (let i = 0; i < TWO_PI; i += angolo) {
-    let sx = x + cos(i) * raggio1;
-    let sy = y + sin(i) * raggio1;
-    vertex(sx, sy);
-    sx = x + cos(i + metaAngolo) * raggio2;
-    sy = y + sin(i + metaAngolo) * raggio2;
-    vertex(sx, sy);
-  }
-  endShape(CLOSE);
-}
-//------------------------------------------------------------------
-
-//
-
 export function caricamentoRisorse() {}
 
+/**
+ * Imposta le impostazioni iniziali
+ * Esempio: impostazioni di frame rate, misura degli angoli, ecc.
+ */
 export function impostazioni() {
   frameRate(30);
   angleMode(DEGREES);
@@ -114,9 +70,10 @@ export function impostazioni() {
  * @param {function} disegnaTesto - La funzione che disegna il testo
  */
 export function sotto(disegnaTesto) {
-  background(127, 255, 0);
+  background("deeppink");
 
-  fill("AntiqueWhite");
+  // [INFO] Rimuovi il commento per disegnare il testo
+  fill("white");
   disegnaTesto();
 }
 
@@ -125,7 +82,7 @@ export function sotto(disegnaTesto) {
  * @param {function} disegnaTesto - La funzione che disegna il testo
  */
 export function sopra(disegnaTesto) {
-  //   stroke("white");
-  //   noFill();
-  //   disegnaTesto();
+  // [INFO] Rimuovi il commento per disegnare il testo
+  // fill("black");
+  // disegnaTesto();
 }
