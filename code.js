@@ -1,9 +1,9 @@
 export const configurazione = {
-  testo: "CC",
+  testo: "王",
   dimensione: 1,
   interlinea: 0.01,
   allineamento: "centro",
-  percorsoFont: "./assets/BAUHS93.TTF",
+  percorsoFont: "./assets/汉仪粗圆简.TTF",
   mostraTestoSotto: true,
   mostraTestoSopra: false,
 };
