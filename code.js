@@ -44,7 +44,7 @@ export function disegnaPunto({
   stroke("black");
   push();
   translate(x, y);
-  rotate(frameCount * 2);
+  rotate(frameCount * 3);
   image(img, 0, 0, 50, 20);
   pop();
 }
